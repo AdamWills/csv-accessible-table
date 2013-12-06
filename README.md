@@ -19,4 +19,4 @@ What options are there?
 
 Additional Info
 ---------------
-This tools uses (jquery-csv)[https://code.google.com/p/jquery-csv/] to convert the csv to an array - so thanks to the folks to have contributed to that project.
+This tools uses [jquery-csv](https://code.google.com/p/jquery-csv/) to convert the csv to an array - so thanks to the folks to have contributed to that project.
