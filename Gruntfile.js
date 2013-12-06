@@ -46,7 +46,6 @@ module.exports = function(grunt) {
             //'assets/js/vendor/bootstrap/scrollspy.js',
             //'assets/js/vendor/bootstrap/tab.js',
             //'assets/js/vendor/bootstrap/affix.js',
-            'assets/js/vendor/*.js',
             'assets/js/*.js',
             '!assets/js/scripts.min.js'
           ]
