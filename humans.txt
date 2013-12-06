@@ -1,0 +1,10 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Adam Wills -- Developer -- @heavymetaladam
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3, jQuery, Accessibility, Bootstrap (You love it).
