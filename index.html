@@ -37,12 +37,41 @@
       <!-- Example row of columns -->
 
       <form role="form">
-        <div class="form-group">
-          <label for="csvText">Paste your CSV text here:</label>
-          <textarea id="csvText" class="form-control" rows="8"></textarea>
+      <h2>Step 1: Input your CSV file</h2>
+      <div class="row file-container hidden">
+          <div class="col-sm-6">
+            <div id="filedrop" class="drag-and-drop">
+              <p>Drag your CSV file here!</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="fileInput">Or select a file</label>
+              <input type="file" id="fileInput">
+            </div>
+          </div>
+      </div>  
+        
+        <div class="alerts">
+          <div class="alert alert-success hidden">
+            <strong>Hooray!</strong> Your data was successfully imported! Now, modify the options as needed and click the button below to generate your table code!
+          </div>
+
+          <div class="alert alert-danger hidden">
+            <strong>Sorry!</strong> That's not a valid file - please ensure to save your data to a CSV file first.
+          </div>
         </div>
 
-        <h3>Options</h3>
+        <div class="form-group csv-file-contents hidden">
+          <button class="btn btn-primary preview-csv-contents">Preview my CSV contents</button>
+          <div class="csv-text-container hidden">
+            <label for="csvText" class="csv-text">Paste your CSV text here:</label>
+            <textarea id="csvText" class="form-control" rows="8"></textarea>
+          </div>
+        </div>
+
+        <div class="step2 hidden">
+        <h2>Step 2: Specify your options</h2>
 
         <div class="checkbox">
           <label for="optFirstRowHeaders">
@@ -68,21 +97,30 @@
         <div class="checkbox">
           <label for="optCaption">
             <input type="checkbox" id="optCaption" value="">
-            Does your table need a caption?
+            Does your table need a caption? 
           </label>
+          (<button class="text-button button-caption-help">What is a caption? Do I need one?</button>)
+
+          <div class="captionDescription alert alert-info hidden">
+            <strong>What is a caption and do I need one?</strong>
+            <p>Data tables very often have brief descriptive text before or after the table that indicates the content of that table. While it is not necessary for each table to have a caption, a caption is generally very helpful.</p>
+          </div>
         </div>
 
         <div class="form-group caption hidden">
           <label for="textCaption">Caption</label>
           <input type="text" id="textCaption" class="form-control">
-          <a href=""></a>
         </div>
 
         <button type="button" class="btn btn-primary" onclick="doConvert()">Create HTML table!</button>
 
+        </div><!-- Step 2 -->
+
       </form>
 
       <div class="output hidden">
+
+        <h2>Step 3: Copy this HTML and paste it in your web page</h2>
         <div class="form-group html-output">
             <label for="htmlText">HTML Table Output</label>
             <textarea id="htmlText" class="form-control" rows="8" onclick="this.focus();this.select()" readonly></textarea>
@@ -114,7 +152,6 @@
         
     </div>
 
-    
 
     <footer class="content-info">
       <div class="container">
@@ -126,16 +163,5 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 
         <script src="assets/js/scripts.min.js"></script>
-
-      <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-9487590-12', 'adamwills.github.io');
-        ga('send', 'pageview');
-
-      </script>
     </body>
 </html>

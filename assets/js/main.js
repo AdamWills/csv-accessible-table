@@ -1,3 +1,15 @@
+// Google Analytics tracking
+ var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-9487590-12']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' === document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+
 function doConvert() {
 	var input = $('#csvText').val();
 	var hasRowHeaders = $('#optFirstRowHeaders').prop('checked');
@@ -88,7 +100,6 @@ function doConvert() {
 		body+=row;
 	});
 
-
 	body += "  </tbody>\n";
 
 	output += body;
@@ -108,3 +119,113 @@ function doConvert() {
 $('#optCaption').change(function() {
 	$('.caption').toggleClass('hidden');
 });
+
+// display the success message
+function showSuccess() {
+	$('.alerts .alert-success').removeClass('hidden');
+}
+
+// display the error message (specific to MIME types)
+function showError() {
+	$('.alerts .alert-danger').removeClass('hidden');
+}
+
+// hides all errors!
+function hideErrors() {
+	$('.alerts .alert').addClass('hidden');
+}
+
+$('.button-caption-help').click(function(e){
+	e.preventDefault();
+	$('.captionDescription').toggleClass('hidden');
+});
+
+$('.preview-csv-contents').click(function(e){
+	e.preventDefault();
+	$('.csv-text-container').toggleClass('hidden');
+});
+
+// takes a file added through the HTML5 File API and add contents to the textarea
+function displayFileContents(file) {
+	var output = $('#csvText');
+	output.val('');
+	
+	var mimeTypes = ["text/comma-separated-values", "text/csv", "application/csv", "application/excel", "application/vnd.ms-excel", "application/vnd.msexcel", "text/anytext"];
+	if ($.inArray(file.type,mimeTypes) > -1) {
+
+		var reader = new FileReader();
+
+		reader.onload = function(e) {
+			output.val(reader.result);
+		};
+
+		reader.readAsText(file);
+		showSuccess();
+		$('.step2').removeClass('hidden');
+		$('.csv-file-contents').removeClass('hidden');
+	}
+	else {
+		
+		showError();
+	}
+	return false;
+}
+
+
+
+
+// file drag and drop support!!
+
+if (window.File && window.FileReader) {
+
+	var fileDrop = document.getElementById('filedrop');
+	var fileInput = document.getElementById('fileInput');
+
+	$('.file-container').removeClass('hidden');
+	$('label.csv-text').html('Your CSV file contents:');
+	$('.csv-file-contents').addClass('hidden');
+	
+	fileDrop.className = 'visible';
+
+	// change visible state when hovering
+	fileDrop.ondragover = function() {
+		this.className = 'hover';
+		return false;
+	};
+	
+	// revert visible state when done
+	fileDrop.ondragend = function() {
+		this.className = '';
+		return false;
+	};
+
+	// when file is dropped in the item
+	fileDrop.ondrop = function(e) {
+		hideErrors();
+		this.className = '';
+		e.preventDefault();
+
+		var file = e.dataTransfer.files[0];
+		
+		// let's track which file method people are using for future UI improvements
+		_gaq.push(['_trackEvent', 'Upload', 'Method', 'Drag and drop']);
+		
+		displayFileContents(file);
+		
+		return false;
+	};
+
+	fileInput.addEventListener('change', function(e) {
+		hideErrors();
+
+		var file = fileInput.files[0];
+
+		// let's track which file method people are using for future UI improvements
+		_gaq.push(['_trackEvent', 'Upload', 'Method', 'File Input']);
+		
+		displayFileContents(file);
+		return false;
+	});
+}
+
+
