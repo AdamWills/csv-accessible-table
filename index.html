@@ -38,18 +38,14 @@
 
       <form role="form">
       <h2>Step 1: Input your CSV file</h2>
-      <div class="row file-container hidden">
-          <div class="col-sm-6">
+      <div class="file-container hidden">
+          
             <div id="filedrop" class="drag-and-drop">
               <p>Drag your CSV file here!</p>
+              <p>Or</p>
+              <button id="btn-upload" class="btn btn-upload">Select file</button>
+              <input id="fileInput" type="file" class="hidden">
             </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label for="fileInput">Or select a file</label>
-              <input type="file" id="fileInput">
-            </div>
-          </div>
       </div>  
         
         <div class="alerts">

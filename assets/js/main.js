@@ -145,6 +145,13 @@ $('.preview-csv-contents').click(function(e){
 	$('.csv-text-container').toggleClass('hidden');
 });
 
+$('#btn-upload').click(function(e) {
+	e.stopPropagation();
+	e.preventDefault();
+	$("#fileInput").click();
+
+});
+
 // takes a file added through the HTML5 File API and add contents to the textarea
 function displayFileContents(file) {
 	var output = $('#csvText');
