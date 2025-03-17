@@ -3,7 +3,7 @@
 
 # TEAM
 
-    Adam Wills -- Developer -- @heavymetaladam
+    Adam Wills -- Developer -- adamwills.dev
 
 # TECHNOLOGY COLOPHON
 

@@ -2,29 +2,35 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+  <!--<![endif]-->
+  <head>
 
-<!--
+    <!--
 
         Looking for an experienced webdev to join your team? Give me a shout - adam@adamwills.com
 
 -->
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>HTML Table Generator</title>
-        <meta name="description" content="A tool to quickly and easily create accessible HTML tables">
-        <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>HTML Table Generator</title>
+    <meta name="description" content="A tool to quickly and easily create accessible HTML tables">
+    <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="assets/css/main.min.css">
+    <link rel="stylesheet" href="assets/css/main.min.css">
 
-    </head>
-    <body>
-        <!--[if lt IE 7]>
+    <!-- Fathom - beautiful, simple website analytics -->
+    <script src="https://cdn.usefathom.com/script.js" data-site="UZYQPPDL" defer></script>
+    <!-- / Fathom -->
+
+  </head>
+  <body>
+    <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-    
+
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
@@ -37,17 +43,17 @@
       <!-- Example row of columns -->
 
       <form role="form">
-      <h2>Step 1: Input your CSV file</h2>
-      <div class="file-container hidden">
-          
-            <div id="filedrop" class="drag-and-drop">
-              <p>Drag your CSV file here!</p>
-              <p>Or</p>
-              <button id="btn-upload" class="btn btn-primary btn-upload">Select file</button>
-              <input id="fileInput" type="file" class="hidden">
-            </div>
-      </div>  
-        
+        <h2>Step 1: Input your CSV file</h2>
+        <div class="file-container hidden">
+
+          <div id="filedrop" class="drag-and-drop">
+            <p>Drag your CSV file here!</p>
+            <p>Or</p>
+            <button id="btn-upload" class="btn btn-primary btn-upload" onclick="fathom.trackEvent('file selected');">Select file</button>
+            <input id="fileInput" type="file" class="hidden">
+          </div>
+        </div>
+
         <div class="alerts">
           <div class="alert alert-success hidden">
             <strong>Hooray!</strong> Your data was successfully imported! Now, modify the options as needed and click the button below to generate your table code!
@@ -59,7 +65,7 @@
         </div>
 
         <div class="form-group csv-file-contents hidden">
-          <button class="btn btn-primary preview-csv-contents">Preview my CSV contents</button>
+          <button class="btn btn-primary preview-csv-contents" onclick="fathom.trackEvent('preview csv');">Preview my CSV contents</button>
           <div class="csv-text-container hidden">
             <label for="csvText" class="csv-text">Paste your CSV text here:</label>
             <textarea id="csvText" class="form-control" rows="8"></textarea>
@@ -67,50 +73,51 @@
         </div>
 
         <div class="step2 hidden">
-        <h2>Step 2: Specify your options</h2>
+          <h2>Step 2: Specify your options</h2>
 
-        <div class="checkbox">
-          <label for="optFirstRowHeaders">
-            <input type="checkbox" id="optFirstRowHeaders" value="">
+          <div class="checkbox">
+            <label for="optFirstRowHeaders">
+              <input type="checkbox" id="optFirstRowHeaders" value="">
             Does the first row contain headings?
           </label>
-        </div>
+          </div>
 
-        <div class="checkbox">
-          <label for="optFirstColHeaders">
-            <input type="checkbox" id="optFirstColHeaders" value="">
+          <div class="checkbox">
+            <label for="optFirstColHeaders">
+              <input type="checkbox" id="optFirstColHeaders" value="">
             Does the first column contain headings?
           </label>
-        </div>
+          </div>
 
-        <div class="checkbox">
-          <label for="optLastRowFooter">
-            <input type="checkbox" id="optLastRowFooter" value="">
+          <div class="checkbox">
+            <label for="optLastRowFooter">
+              <input type="checkbox" id="optLastRowFooter" value="">
             Is the last row a footer?
           </label>
-        </div>
+          </div>
 
-        <div class="checkbox">
-          <label for="optCaption">
-            <input type="checkbox" id="optCaption" value="">
-            Does your table need a caption? 
+          <div class="checkbox">
+            <label for="optCaption">
+              <input type="checkbox" id="optCaption" value="">
+            Does your table need a caption?
           </label>
           (<button class="text-button button-caption-help">What is a caption? Do I need one?</button>)
 
           <div class="captionDescription alert alert-info hidden">
-            <strong>What is a caption and do I need one?</strong>
-            <p>Data tables very often have brief descriptive text before or after the table that indicates the content of that table. While it is not necessary for each table to have a caption, a caption is generally very helpful.</p>
+              <strong>What is a caption and do I need one?</strong>
+              <p>Data tables very often have brief descriptive text before or after the table that indicates the content of that table. While it is not necessary for each table to have a caption, a caption is generally very helpful.</p>
+            </div>
           </div>
+
+          <div class="form-group caption hidden">
+            <label for="textCaption">Caption</label>
+            <input type="text" id="textCaption" class="form-control">
+          </div>
+
+          <button type="button" class="btn btn-primary" onclick="doConvert();fathom.trackEvent('create HTML');">Create HTML table!</button>
+
         </div>
-
-        <div class="form-group caption hidden">
-          <label for="textCaption">Caption</label>
-          <input type="text" id="textCaption" class="form-control">
-        </div>
-
-        <button type="button" class="btn btn-primary" onclick="doConvert()">Create HTML table!</button>
-
-        </div><!-- Step 2 -->
+        <!-- Step 2 -->
 
       </form>
 
@@ -118,8 +125,8 @@
 
         <h2>Step 3: Copy this HTML and paste it in your web page</h2>
         <div class="form-group html-output">
-            <label for="htmlText">HTML Table Output</label>
-            <textarea id="htmlText" class="form-control" rows="8" onclick="this.focus();this.select()" readonly></textarea>
+          <label for="htmlText">HTML Table Output</label>
+          <textarea id="htmlText" class="form-control" rows="8" onclick="this.focus();this.select()" readonly></textarea>
         </div>
 
         <div class="table-output">
@@ -128,7 +135,8 @@
         </div>
       </div>
 
-    </div> <!-- /container -->        
+    </div>
+    <!-- /container -->
 
     <div class="about">
 
@@ -143,21 +151,23 @@
         <h2>Want to contribute?</h2>
 
         <p>Have any suggestions on how this tool could be improved? <a href="https://github.com/AdamWills/csv-accessible-table/">Contribute on GitHub</a>. Not a code geek and have some suggestions? That'll work too - email me at <a href="mailto:adam@adamwills.com">adam@adamwills.com</a> and I'll do my best to oblige!</p>
-        
-      </div>
-        
-    </div>
 
+      </div>
+
+    </div>
 
     <footer class="content-info">
       <div class="container">
-        <p>Created by <a href="http://adamwills.com">Adam Wills</a>. Hosted by <a href="//github.com">Github</a></p>
+        <p>Created by <a href="https://adamwills.dev">Adam Wills</a>. Hosted by <a href="//github.com">Github</a>. Enjoy this site? <a href="https://buymeacoffee.com/adamwillsdev">Buy me a coffee!</a>
+        </p>
       </div>
-    </footer> 
+    </footer>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script>
+      window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')
+    </script>
 
-        <script src="assets/js/scripts.min.js"></script>
-    </body>
+    <script src="assets/js/scripts.min.js"></script>
+  </body>
 </html>

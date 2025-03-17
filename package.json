@@ -1,21 +1,23 @@
 {
-  "name": "roots",
-  "version": "6.5.1",
-  "author": "Ben Word <ben@benword.com>",
-  "homepage": "http://roots.io",
+  "name": "csv-accessible-table",
+  "version": "1.1.0",
+  "author": "Adam Wills <adam@adamwills.com.com>",
+  "homepage": "https://adamwills.github.io/csv-accessible-table/",
   "repository": {
     "type": "git",
-    "url": "git://github.com/roots/roots.git"
+    "url": "git@github.com:AdamWills/csv-accessible-table.git"
   },
   "bugs": {
-    "url" : "https://github.com/roots/roots/issues"
+    "url": "https://github.com/AdamWills/csv-accessible-table/issues"
   },
-  "licenses": [{
-    "type": "MIT",
-    "url": "http://opensource.org/licenses/MIT"
-  }],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 12.0.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
