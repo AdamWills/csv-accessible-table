@@ -21,9 +21,15 @@
 
     <link rel="stylesheet" href="assets/css/main.min.css">
 
-    <!-- Fathom - beautiful, simple website analytics -->
-    <script src="https://cdn.usefathom.com/script.js" data-site="UZYQPPDL" defer></script>
-    <!-- / Fathom -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7309BQ1XMM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-7309BQ1XMM');
+    </script>
 
   </head>
   <body>
@@ -49,7 +55,7 @@
           <div id="filedrop" class="drag-and-drop">
             <p>Drag your CSV file here!</p>
             <p>Or</p>
-            <button id="btn-upload" class="btn btn-primary btn-upload" onclick="fathom.trackEvent('file selected');">Select file</button>
+            <button id="btn-upload" class="btn btn-primary btn-upload" onclick="gtag('event', 'file_selected');">Select file</button>
             <input id="fileInput" type="file" class="hidden">
           </div>
         </div>
@@ -65,7 +71,7 @@
         </div>
 
         <div class="form-group csv-file-contents hidden">
-          <button class="btn btn-primary preview-csv-contents" onclick="fathom.trackEvent('preview csv');">Preview my CSV contents</button>
+          <button class="btn btn-primary preview-csv-contents" onclick="gtag('event', 'preview_csv');">Preview my CSV contents</button>
           <div class="csv-text-container hidden">
             <label for="csvText" class="csv-text">Paste your CSV text here:</label>
             <textarea id="csvText" class="form-control" rows="8"></textarea>
@@ -114,7 +120,7 @@
             <input type="text" id="textCaption" class="form-control">
           </div>
 
-          <button type="button" class="btn btn-primary" onclick="doConvert();fathom.trackEvent('create HTML');">Create HTML table!</button>
+          <button type="button" class="btn btn-primary" onclick="doConvert(); gtag('event', 'create_html_table');">Create HTML table!</button>
 
         </div>
         <!-- Step 2 -->
@@ -160,6 +166,7 @@
       <div class="container">
         <p>Created by <a href="https://adamwills.dev">Adam Wills</a>. Hosted by <a href="//github.com">Github</a>. Enjoy this site? <a href="https://buymeacoffee.com/adamwillsdev">Buy me a coffee!</a>
         </p>
+        <p>Also by Adam: <a href="https://getturnout.app">Turnout</a></p>
       </div>
     </footer>
 
